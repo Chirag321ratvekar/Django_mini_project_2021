@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>{% block title%} {% endblock %}</title>
+     <style>
+      ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+       overflow: hidden;
+       background-color: #333;
+       top: 0;
+       width: 100%; 
+     }
+
+     li {
+       float: left;
+     }
+
+     li a {
+       display: block;
+       color: white;
+       text-align: center;
+       padding: 14px 16px;
+       text-decoration: none;
+     }
+
+     li a:hover:not(.active) {
+       background-color: #111;
+     }
+
+     .active {
+       background-color: #4CAF50;
+     }
+      * {box-sizing: border-box;}
+      body {font-family: Verdana, sans-serif;}
+      .mySlides {display: none;}
+      img {vertical-align: top;}
+
+
+    body {
+                  font-family: "Lato", sans-serif;
+                }
+
+                .sidenav {
+                  height:  100%;
+                  width: 160px;
+                  position: fixed;
+                  z-index: 1;
+                  margin-top: 50px;
+                  left: 0;
+                  background-color: #333;
+                  overflow-x: hidden;
+                  padding-top: 20px;
+                }
+
+                .sidenav a {
+                  padding: 6px 8px 6px 16px;
+                  text-decoration: none;
+                  font-size: 25px;
+                  color: #4CAF50;
+                  display: block;
+                }
+
+                .sidenav a:hover {
+                  color: #f1f1f1;
+                }
+
+                .main {
+                  margin-left: 160px; /* Same as the width of the sidenav */
+                  font-size: 28px; /* Increased text to enable scrolling */
+                  padding: 0px 10px;
+                }
+
+                @media screen and (max-height: 450px) {
+                  .sidenav {padding-top: 15px;}
+                  .sidenav a {font-size: 18px;}
+                }
+
+
+                {% block css %} {% endblock %} 
+  </style>
+  </head>
+   <var></var>   
+  <body>
+
+
+            <ul>
+              <style>
+
+                </style>
+
+
+
+                <div class="sidenav">
+                  <a href="{% url 'profile' %}">Profile</a>
+                  <a href="{% url 'product' %}">Product</a>
+                  <a href="{% url 'contact' %}">Contact Us</a>
+                  <a href="{% url 'feedback' %}">Feedback</a>
+                </div>
+                {% if user.is_authenticated%}
+
+                <li><a class="active" href="{% url 'home' %}" >Home</a></li>
+                {% else %}
+                <li><a class="active" href="{% url 'index' %}">Home</a></li>
+                {% endif %}
+
+
+                 <li><a href="{% url 'about' %}">About</a></li>
+                 <li><a href="{% url 'privacypolicy' %}">Privacypolicy</a></li>
+                  {% if user.is_authenticated%}
+
+                    <li style="float: right;"><a href="{% url 'logout' %}">Logout</a></li>
+                    <button style="float:right" type="button" class="btn btn-secondary mx-2" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Vivamussagittis lacus vel augue laoreet rutrum faucibus.">
+
+
+                      Cart(<span id="cart">0</span>)
+                    </button>
+                  {% endif %}
+
+            </ul>
+      {% block body %} {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% block js %} {% endblock %}
+  </body>
+</html>
